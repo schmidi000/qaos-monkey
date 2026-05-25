@@ -1,0 +1,41 @@
+{
+  "name": "qaosmonkey",
+  "version": "0.1.0",
+  "description": "Tech-agnostic agentic mobile exploratory testing CLI.",
+  "type": "module",
+  "bin": {
+    "qaosmonkey": "./src/cli.ts"
+  },
+  "scripts": {
+    "qaosmonkey": "node --experimental-transform-types src/cli.ts",
+    "test": "node --experimental-transform-types --test test/*.test.ts"
+  },
+  "files": [
+    "src",
+    "qaos-monkey.config.example.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "homepage": "https://qaosmonkey.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schmidi000/qaos-monkey.git"
+  },
+  "bugs": {
+    "url": "https://github.com/schmidi000/qaos-monkey/issues"
+  },
+  "engines": {
+    "node": ">=22.6"
+  },
+  "keywords": [
+    "mobile",
+    "testing",
+    "llm",
+    "agent",
+    "exploratory-testing"
+  ],
+  "license": "MIT-0",
+  "publishConfig": {
+    "access": "public"
+  }
+}

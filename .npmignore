@@ -1,0 +1,30 @@
+# Website and documentation source
+website/
+.github/
+
+# Local configs and generated artifacts
+qaos-monkey.config.ts
+qaos-monkey.private.config.ts
+qaos-monkey.*.private.config.ts
+qaos-monkey.ios-sim.config.ts
+.qaos-monkey/
+
+# Tests and planning docs
+test/
+impl.md
+
+# Local secrets and env
+.env
+.env.*
+!.env.example
+
+# Build/cache/editor files
+node_modules/
+dist/
+build/
+coverage/
+.cache/
+.docusaurus/
+.DS_Store
+*.log
+
