@@ -1,6 +1,4 @@
-import type { QAosMonkeyConfig } from "./src/types.ts";
-
-const config: QAosMonkeyConfig = {
+const config = {
   app: {
     platform: "android",
     name: "Example App",

@@ -4,7 +4,53 @@ QAosMonkey is a tech-agnostic exploratory mobile testing agent. It drives iOS an
 
 Website: [qaosmonkey.com](https://qaosmonkey.com)
 
-The current implementation is a working scaffold: it can already control an iOS simulator, collect accessibility snapshots, execute model decisions, persist run state, and generate reports. The default project runs TypeScript directly with Node 22's built-in type transform, so the first version does not require a build step.
+The current implementation is a working scaffold: it can already control an iOS simulator, collect accessibility snapshots, execute model decisions, persist run state, and generate reports.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Requirements](#requirements)
+- [Find Your Simulator or Emulator Id](#find-your-simulator-or-emulator-id)
+- [First Verify QAosMonkey Works](#first-verify-qaosmonkey-works)
+- [Smoke Test Your App](#smoke-test-your-app)
+- [When a Run Stops](#when-a-run-stops)
+- [Guide What Must Be Tested](#guide-what-must-be-tested)
+- [Human Input During a Run](#human-input-during-a-run)
+- [Console Progress Logging](#console-progress-logging)
+- [Config Reference](#config-reference)
+- [Supported Model Actions](#supported-model-actions)
+- [Device Driver Notes](#device-driver-notes)
+- [Useful Commands](#useful-commands)
+- [Publishing to npm](#publishing-to-npm)
+- [Dependency Links](#dependency-links)
+
+## Installation
+
+Install QAosMonkey from npm in the project where you want to run mobile smoke tests:
+
+```bash
+npm install --save-dev qaosmonkey
+```
+
+Then create a starter config:
+
+```bash
+npx qaosmonkey init
+```
+
+Run QAosMonkey with:
+
+```bash
+npx qaosmonkey run --config qaos-monkey.config.ts
+```
+
+Do not put `--` between `qaosmonkey` and `run` when using `npx`. Use `--` only with `npm run qaosmonkey -- ...` because that form is forwarding arguments through an npm script.
+
+You can also run without adding it to `package.json`:
+
+```bash
+npx qaosmonkey@latest --help
+```
 
 ## Requirements
 
@@ -390,7 +436,7 @@ QAOSMONKEY_QUIET=1 npm run qaosmonkey -- run --config qaos-monkey.config.ts
 
 ## Config Reference
 
-The config file exports a `QAosMonkeyConfig` object. Start from [qaos-monkey.config.example.ts](qaos-monkey.config.example.ts) or generate [qaos-monkey.config.ts](qaos-monkey.config.ts) with `npm run qaosmonkey -- init`.
+The config file exports a plain config object. Start from [qaos-monkey.config.example.ts](qaos-monkey.config.example.ts) or generate [qaos-monkey.config.ts](qaos-monkey.config.ts) with `npm run qaosmonkey -- init`.
 
 ### `app`
 
@@ -637,13 +683,13 @@ npm run qaosmonkey -- report <runId> --config qaos-monkey.config.ts
 
 The npm package name is `qaosmonkey`, not `qaos-monkey`. This follows the project naming rule: use `QAosMonkey` for the brand, `qaosmonkey` for terminal and package registry identifiers, and `qaos-monkey` for files and directories.
 
-Publishing is handled by [.github/workflows/publish-npm.yml](.github/workflows/publish-npm.yml). The workflow runs tests, shows `npm pack --dry-run`, and publishes the root package only. The website is excluded through `package.json` `files` and [.npmignore](.npmignore).
+Publishing is handled by [.github/workflows/publish-npm.yml](.github/workflows/publish-npm.yml). The workflow runs tests, builds the package, shows `npm pack --dry-run`, and publishes the root package only. The website is excluded through `package.json` `files` and [.npmignore](.npmignore).
 
 To enable publishing:
 
 1. Create an npm access token for the `qaosmonkey` package.
 2. Add it to the GitHub repository secrets as `NPM_TOKEN`.
-3. Create and publish a GitHub Release, or run the workflow manually from GitHub Actions.
+3. Push a version tag such as `v0.1.1`, create and publish a GitHub Release, or run the workflow manually from GitHub Actions.
 
 You can verify the package contents locally with:
 

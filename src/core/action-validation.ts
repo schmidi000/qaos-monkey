@@ -52,9 +52,10 @@ export function findExcludedActionTarget(decision: AgentDecision, snapshot: stri
   if (!("ref" in decision) || !decision.ref || !["tap", "type", "scroll", "swipe"].includes(decision.action)) {
     return undefined;
   }
+  const ref = decision.ref;
   const targetLine = snapshot
     .split("\n")
-    .find((line) => new RegExp(`(^|\\s)${escapeRegex(decision.ref)}(\\s|$)`).test(line));
+    .find((line) => new RegExp(`(^|\\s)${escapeRegex(ref)}(\\s|$)`).test(line));
   return targetLine ? findMatchingPattern([targetLine], patterns) : undefined;
 }
 

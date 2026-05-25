@@ -5,12 +5,10 @@ title: Configuration
 
 # Configuration
 
-QAosMonkey is configured with a TypeScript file that exports a `QAosMonkeyConfig`.
+QAosMonkey is configured with a TypeScript file that exports a config object.
 
 ```ts
-import type { QAosMonkeyConfig } from "./src/types.ts";
-
-const config: QAosMonkeyConfig = {
+const config = {
   app: {
     platform: "ios",
     name: "My App",

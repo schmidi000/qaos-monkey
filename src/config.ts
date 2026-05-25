@@ -1,6 +1,6 @@
 import { access, copyFile, mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import type { QAosMonkeyConfig } from "./types.ts";
 import { loadCredentialEnvFile } from "./credentials.ts";
 
@@ -86,7 +86,7 @@ export async function createConfigFile(targetPath = "qaos-monkey.config.ts"): Pr
   } catch {
     await mkdir(dirname(absoluteTarget), { recursive: true });
     try {
-      await copyFile(resolve("qaos-monkey.config.example.ts"), absoluteTarget);
+      await copyFile(exampleConfigPath(), absoluteTarget);
     } catch {
       await writeFile(absoluteTarget, defaultConfigText(), "utf8");
     }
@@ -94,10 +94,12 @@ export async function createConfigFile(targetPath = "qaos-monkey.config.ts"): Pr
   }
 }
 
-function defaultConfigText(): string {
-  return `import type { QAosMonkeyConfig } from "./src/types.ts";
+function exampleConfigPath(): string {
+  return resolve(dirname(fileURLToPath(import.meta.url)), "..", "qaos-monkey.config.example.ts");
+}
 
-const config: QAosMonkeyConfig = ${JSON.stringify(defaultConfig, null, 2)};
+function defaultConfigText(): string {
+  return `const config = ${JSON.stringify(defaultConfig, null, 2)};
 
 export default config;
 `;

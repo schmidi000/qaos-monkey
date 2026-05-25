@@ -45,6 +45,14 @@ const agentDevice = ["npx", "agent-device", "--platform", "android", "--serial",
 npm run qaosmonkey -- run --config qaos-monkey.config.ts
 ```
 
+If you installed QAosMonkey from npm, use:
+
+```bash
+npx qaosmonkey run --config qaos-monkey.config.ts
+```
+
+Use `--` only with `npm run qaosmonkey -- ...`, not with `npx qaosmonkey`.
+
 QAosMonkey prints `[qaosmonkey]` progress lines while it runs, including each step, screen observation, model call, chosen action, device execution, and result. CLI model providers also emit heartbeat messages every 10 seconds while QAosMonkey waits for Codex CLI or Claude Code to return a decision.
 
 To silence progress logs:

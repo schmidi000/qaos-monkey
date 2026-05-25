@@ -1,4 +1,4 @@
-#!/usr/bin/env -S node --experimental-transform-types
+#!/usr/bin/env node
 import { resolve } from "node:path";
 import { createConfigFile, loadConfig } from "./config.ts";
 import { createDeviceDriver } from "./drivers/index.ts";
