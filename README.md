@@ -738,4 +738,6 @@ The documentation website is a separate private package under `website/`. Its ma
 - [clsx](https://github.com/lukeed/clsx) for conditional CSS class names.
 - [Prism React Renderer](https://github.com/FormidableLabs/prism-react-renderer) for code highlighting.
 
+Additional credits to [Sauce Labs](https://github.com/saucelabs/my-demo-app-android) for their Demo App which I used in the demo video.
+
 For dependency license notes, see [THIRD_PARTY_LICENSES_SUMMARY.md](THIRD_PARTY_LICENSES_SUMMARY.md).
