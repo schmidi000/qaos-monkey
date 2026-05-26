@@ -4,11 +4,56 @@ QAosMonkey is a tech-agnostic exploratory mobile testing agent. It drives iOS an
 
 Website: [qaosmonkey.com](https://qaosmonkey.com)
 
-The current implementation is a working scaffold: it can already control an iOS simulator, collect accessibility snapshots, execute model decisions, persist run state, and generate reports.
+## 🤔 Why did I build this?
+
+If you have ever written UI tests for mobile apps, you know the pain: you spend hours writing rigid Appium or Maestro scripts, only for a designer to move a button 10 pixels to the left, breaking your XPath and failing the CI pipeline.
+
+Meanwhile, most "Autonomous AI" testing tools on GitHub are academic proofs-of-concept that completely crash the moment they encounter a real-world blocker like a Captcha, a 2FA prompt, or an OTP screen.
+
+**QAosMonkey bridges this gap.** By combining Vision-Language Models (to see the UI like a human) with the OS accessibility tree, it is impervious to minor UI tweaks. By utilizing LangGraph state machines, it introduces **Human-in-the-Loop (HITL) breakpoints**, pausing gracefully when it needs your help to bypass a login, and resuming its chaos immediately after.
+
+## Installation
+
+### From NPM
+
+📦 Install QAosMonkey from npm in the project where you want to run mobile smoke tests:
+
+```bash
+npm install --save-dev qaosmonkey
+```
+
+🧭 Then create a starter config:
+
+```bash
+npx qaosmonkey init
+```
+
+🛠️ Adjust the starter config for your app, emulator, model, credentials, and exploration goal.
+
+🚀 Run QAosMonkey with:
+
+```bash
+npx qaosmonkey run --config qaos-monkey.config.ts
+```
+
+### From Source
+
+📥 Clone the repository:
+
+```bash
+git clone https://github.com/schmidi000/qaos-monkey.git
+```
+
+🛠️ Adjust [qaos-monkey.config.example.ts](qaos-monkey.config.example.ts) for your app, emulator, model, credentials, and exploration goal.
+
+🚀 Execute QAosMonkey:
+
+```bash
+qaosmonkey run --config qaos-monkey.config.example.ts
+```
 
 ## Table of Contents
 
-- [Installation](#installation)
 - [Requirements](#requirements)
 - [Find Your Simulator or Emulator Id](#find-your-simulator-or-emulator-id)
 - [First Verify QAosMonkey Works](#first-verify-qaosmonkey-works)
@@ -24,41 +69,13 @@ The current implementation is a working scaffold: it can already control an iOS 
 - [Publishing to npm](#publishing-to-npm)
 - [Dependency Links](#dependency-links)
 
-## Installation
-
-Install QAosMonkey from npm in the project where you want to run mobile smoke tests:
-
-```bash
-npm install --save-dev qaosmonkey
-```
-
-Then create a starter config:
-
-```bash
-npx qaosmonkey init
-```
-
-Run QAosMonkey with:
-
-```bash
-npx qaosmonkey run --config qaos-monkey.config.ts
-```
-
-Do not put `--` between `qaosmonkey` and `run` when using `npx`. Use `--` only with `npm run qaosmonkey -- ...` because that form is forwarding arguments through an npm script.
-
-You can also run without adding it to `package.json`:
-
-```bash
-npx qaosmonkey@latest --help
-```
-
 ## Requirements
 
-- Node.js 22.6 or newer.
-- For iOS: Xcode with a booted iOS Simulator.
-- For Android: a running Android emulator.
-- `agent-device`, either installed globally or run through `npx`.
-- One model provider:
+- ✅ Node.js 22.6 or newer.
+- 🍎 For iOS: Xcode with a booted iOS Simulator.
+- 🤖 For Android: a running Android emulator.
+- 🔌 `agent-device`, either installed globally or run through `npx`.
+- 🧠 One model provider:
   - a CLI command such as Codex CLI or Claude Code that reads a prompt from stdin and prints one JSON decision, or
   - an OpenAI-compatible or Anthropic API key.
 
