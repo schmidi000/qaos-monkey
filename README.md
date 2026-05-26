@@ -1,5 +1,9 @@
 # QAosMonkey
 
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/4359ce2b-291d-4214-9504-cdb22bb1453e" autoplay loop muted playsinline width="100%"></video>
+</div>
+
 QAosMonkey is a tech-agnostic exploratory mobile testing agent. It drives iOS and Android emulators through `agent-device`, asks a configurable model what to try next, pauses when human help is required, and writes reproducible bug reports with screenshots and step traces.
 
 Website: [qaosmonkey.com](https://qaosmonkey.com)
